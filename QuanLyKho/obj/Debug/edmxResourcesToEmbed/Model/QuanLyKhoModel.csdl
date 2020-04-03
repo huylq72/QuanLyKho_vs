@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="quanlykhoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHITIETPHIEUNHAP">
+    <Key>
+      <PropertyRef Name="Ma_PhieuNhap" />
+      <PropertyRef Name="Ma_MatHang" />
+    </Key>
+    <Property Name="Ma_PhieuNhap" Type="Int32" Nullable="false" />
+    <Property Name="Ma_MatHang" Type="Int32" Nullable="false" />
+    <Property Name="So_Luong" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MATHANG" Relationship="Self.FK__CHITIETPH__Ma_Ma__4CA06362" FromRole="CHITIETPHIEUNHAP" ToRole="MATHANG" />
+    <NavigationProperty Name="PHIEUNHAP" Relationship="Self.FK__CHITIETPH__Ma_Ph__4BAC3F29" FromRole="CHITIETPHIEUNHAP" ToRole="PHIEUNHAP" />
+  </EntityType>
+  <EntityType Name="CHITIETPHIEUXUAT">
+    <Key>
+      <PropertyRef Name="Ma_PhieuXuat" />
+      <PropertyRef Name="Ma_MatHang" />
+    </Key>
+    <Property Name="Ma_PhieuXuat" Type="Int32" Nullable="false" />
+    <Property Name="Ma_MatHang" Type="Int32" Nullable="false" />
+    <Property Name="So_Luong" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MATHANG" Relationship="Self.FK__CHITIETPH__Ma_Ma__5070F446" FromRole="CHITIETPHIEUXUAT" ToRole="MATHANG" />
+    <NavigationProperty Name="PHIEUXUAT" Relationship="Self.FK__CHITIETPH__Ma_Ph__4F7CD00D" FromRole="CHITIETPHIEUXUAT" ToRole="PHIEUXUAT" />
+  </EntityType>
+  <EntityType Name="CHUCVU">
+    <Key>
+      <PropertyRef Name="Ma_Chuc_Vu" />
+    </Key>
+    <Property Name="Ma_Chuc_Vu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten_Chuc_Vu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="NHANVIENs" Relationship="Self.FK__NHANVIEN__Ma_Chu__38996AB5" FromRole="CHUCVU" ToRole="NHANVIEN" />
+  </EntityType>
+  <EntityType Name="DONVI">
+    <Key>
+      <PropertyRef Name="Ma_Dvi" />
+    </Key>
+    <Property Name="Ma_Dvi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Loai_Dvi" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="MATHANGs" Relationship="Self.FK__MATHANG__Ma_Dvi__48CFD27E" FromRole="DONVI" ToRole="MATHANG" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="Ma_KH" />
+    </Key>
+    <Property Name="Ma_KH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten_KH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Dia_Chi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Dienthoai" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PHIEUXUATs" Relationship="Self.FK__PHIEUXUAT__Ma_KH__4316F928" FromRole="KHACHHANG" ToRole="PHIEUXUAT" />
+  </EntityType>
+  <EntityType Name="MATHANG">
+    <Key>
+      <PropertyRef Name="Ma_MatHang" />
+    </Key>
+    <Property Name="Ma_MatHang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ma_Dvi" Type="Int32" Nullable="false" />
+    <Property Name="Ten_MatHang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gia_Nhap" Type="Double" Nullable="false" />
+    <Property Name="Gia_Ban" Type="Double" Nullable="false" />
+    <NavigationProperty Name="CHITIETPHIEUNHAPs" Relationship="Self.FK__CHITIETPH__Ma_Ma__4CA06362" FromRole="MATHANG" ToRole="CHITIETPHIEUNHAP" />
+    <NavigationProperty Name="CHITIETPHIEUXUATs" Relationship="Self.FK__CHITIETPH__Ma_Ma__5070F446" FromRole="MATHANG" ToRole="CHITIETPHIEUXUAT" />
+    <NavigationProperty Name="DONVI" Relationship="Self.FK__MATHANG__Ma_Dvi__48CFD27E" FromRole="MATHANG" ToRole="DONVI" />
+  </EntityType>
+  <EntityType Name="NHACUNGCAP">
+    <Key>
+      <PropertyRef Name="Ma_NCC" />
+    </Key>
+    <Property Name="Ma_NCC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten_NCC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Dia_Chi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Dienthoai" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ngayki_hd" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="PHIEUNHAPs" Relationship="Self.FK__PHIEUNHAP__Ma_NC__3D5E1FD2" FromRole="NHACUNGCAP" ToRole="PHIEUNHAP" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="Ma_NV" />
+    </Key>
+    <Property Name="Ma_NV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ma_Chuc_Vu" Type="Int32" Nullable="false" />
+    <Property Name="Ten_NV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ngay_Sinh" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Dia_Chi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Ten_DN" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MK" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CHUCVU" Relationship="Self.FK__NHANVIEN__Ma_Chu__38996AB5" FromRole="NHANVIEN" ToRole="CHUCVU" />
+    <NavigationProperty Name="PHIEUNHAPs" Relationship="Self.FK__PHIEUNHAP__Ma_NV__3E52440B" FromRole="NHANVIEN" ToRole="PHIEUNHAP" />
+    <NavigationProperty Name="PHIEUXUATs" Relationship="Self.FK__PHIEUXUAT__Ma_NV__440B1D61" FromRole="NHANVIEN" ToRole="PHIEUXUAT" />
+  </EntityType>
+  <EntityType Name="PHIEUNHAP">
+    <Key>
+      <PropertyRef Name="Ma_PhieuNhap" />
+    </Key>
+    <Property Name="Ma_PhieuNhap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ma_NCC" Type="Int32" Nullable="false" />
+    <Property Name="Ma_NV" Type="Int32" Nullable="false" />
+    <Property Name="Thoi_Gian" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CHITIETPHIEUNHAPs" Relationship="Self.FK__CHITIETPH__Ma_Ph__4BAC3F29" FromRole="PHIEUNHAP" ToRole="CHITIETPHIEUNHAP" />
+    <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK__PHIEUNHAP__Ma_NC__3D5E1FD2" FromRole="PHIEUNHAP" ToRole="NHACUNGCAP" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__PHIEUNHAP__Ma_NV__3E52440B" FromRole="PHIEUNHAP" ToRole="NHANVIEN" />
+  </EntityType>
+  <EntityType Name="PHIEUXUAT">
+    <Key>
+      <PropertyRef Name="Ma_PhieuXuat" />
+    </Key>
+    <Property Name="Ma_PhieuXuat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ma_KH" Type="Int32" Nullable="false" />
+    <Property Name="Ma_NV" Type="Int32" Nullable="false" />
+    <Property Name="Thoi_Gian" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CHITIETPHIEUXUATs" Relationship="Self.FK__CHITIETPH__Ma_Ph__4F7CD00D" FromRole="PHIEUXUAT" ToRole="CHITIETPHIEUXUAT" />
+    <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__PHIEUXUAT__Ma_KH__4316F928" FromRole="PHIEUXUAT" ToRole="KHACHHANG" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__PHIEUXUAT__Ma_NV__440B1D61" FromRole="PHIEUXUAT" ToRole="NHANVIEN" />
+  </EntityType>
+  <Association Name="FK__CHITIETPH__Ma_Ma__4CA06362">
+    <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="1" />
+    <End Role="CHITIETPHIEUNHAP" Type="Self.CHITIETPHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MATHANG">
+        <PropertyRef Name="Ma_MatHang" />
+      </Principal>
+      <Dependent Role="CHITIETPHIEUNHAP">
+        <PropertyRef Name="Ma_MatHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CHITIETPH__Ma_Ph__4BAC3F29">
+    <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="1" />
+    <End Role="CHITIETPHIEUNHAP" Type="Self.CHITIETPHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUNHAP">
+        <PropertyRef Name="Ma_PhieuNhap" />
+      </Principal>
+      <Dependent Role="CHITIETPHIEUNHAP">
+        <PropertyRef Name="Ma_PhieuNhap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CHITIETPH__Ma_Ma__5070F446">
+    <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="1" />
+    <End Role="CHITIETPHIEUXUAT" Type="Self.CHITIETPHIEUXUAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MATHANG">
+        <PropertyRef Name="Ma_MatHang" />
+      </Principal>
+      <Dependent Role="CHITIETPHIEUXUAT">
+        <PropertyRef Name="Ma_MatHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CHITIETPH__Ma_Ph__4F7CD00D">
+    <End Role="PHIEUXUAT" Type="Self.PHIEUXUAT" Multiplicity="1" />
+    <End Role="CHITIETPHIEUXUAT" Type="Self.CHITIETPHIEUXUAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUXUAT">
+        <PropertyRef Name="Ma_PhieuXuat" />
+      </Principal>
+      <Dependent Role="CHITIETPHIEUXUAT">
+        <PropertyRef Name="Ma_PhieuXuat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NHANVIEN__Ma_Chu__38996AB5">
+    <End Role="CHUCVU" Type="Self.CHUCVU" Multiplicity="1" />
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHUCVU">
+        <PropertyRef Name="Ma_Chuc_Vu" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="Ma_Chuc_Vu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MATHANG__Ma_Dvi__48CFD27E">
+    <End Role="DONVI" Type="Self.DONVI" Multiplicity="1" />
+    <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONVI">
+        <PropertyRef Name="Ma_Dvi" />
+      </Principal>
+      <Dependent Role="MATHANG">
+        <PropertyRef Name="Ma_Dvi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUXUAT__Ma_KH__4316F928">
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="1" />
+    <End Role="PHIEUXUAT" Type="Self.PHIEUXUAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="Ma_KH" />
+      </Principal>
+      <Dependent Role="PHIEUXUAT">
+        <PropertyRef Name="Ma_KH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUNHAP__Ma_NC__3D5E1FD2">
+    <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="1" />
+    <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHACUNGCAP">
+        <PropertyRef Name="Ma_NCC" />
+      </Principal>
+      <Dependent Role="PHIEUNHAP">
+        <PropertyRef Name="Ma_NCC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUNHAP__Ma_NV__3E52440B">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="Ma_NV" />
+      </Principal>
+      <Dependent Role="PHIEUNHAP">
+        <PropertyRef Name="Ma_NV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PHIEUXUAT__Ma_NV__440B1D61">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="PHIEUXUAT" Type="Self.PHIEUXUAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="Ma_NV" />
+      </Principal>
+      <Dependent Role="PHIEUXUAT">
+        <PropertyRef Name="Ma_NV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="quanlykhoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHITIETPHIEUNHAPs" EntityType="Self.CHITIETPHIEUNHAP" />
+    <EntitySet Name="CHITIETPHIEUXUATs" EntityType="Self.CHITIETPHIEUXUAT" />
+    <EntitySet Name="CHUCVUs" EntityType="Self.CHUCVU" />
+    <EntitySet Name="DONVIs" EntityType="Self.DONVI" />
+    <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+    <EntitySet Name="MATHANGs" EntityType="Self.MATHANG" />
+    <EntitySet Name="NHACUNGCAPs" EntityType="Self.NHACUNGCAP" />
+    <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+    <EntitySet Name="PHIEUNHAPs" EntityType="Self.PHIEUNHAP" />
+    <EntitySet Name="PHIEUXUATs" EntityType="Self.PHIEUXUAT" />
+    <AssociationSet Name="FK__CHITIETPH__Ma_Ma__4CA06362" Association="Self.FK__CHITIETPH__Ma_Ma__4CA06362">
+      <End Role="MATHANG" EntitySet="MATHANGs" />
+      <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CHITIETPH__Ma_Ph__4BAC3F29" Association="Self.FK__CHITIETPH__Ma_Ph__4BAC3F29">
+      <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
+      <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CHITIETPH__Ma_Ma__5070F446" Association="Self.FK__CHITIETPH__Ma_Ma__5070F446">
+      <End Role="MATHANG" EntitySet="MATHANGs" />
+      <End Role="CHITIETPHIEUXUAT" EntitySet="CHITIETPHIEUXUATs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CHITIETPH__Ma_Ph__4F7CD00D" Association="Self.FK__CHITIETPH__Ma_Ph__4F7CD00D">
+      <End Role="PHIEUXUAT" EntitySet="PHIEUXUATs" />
+      <End Role="CHITIETPHIEUXUAT" EntitySet="CHITIETPHIEUXUATs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NHANVIEN__Ma_Chu__38996AB5" Association="Self.FK__NHANVIEN__Ma_Chu__38996AB5">
+      <End Role="CHUCVU" EntitySet="CHUCVUs" />
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MATHANG__Ma_Dvi__48CFD27E" Association="Self.FK__MATHANG__Ma_Dvi__48CFD27E">
+      <End Role="DONVI" EntitySet="DONVIs" />
+      <End Role="MATHANG" EntitySet="MATHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUXUAT__Ma_KH__4316F928" Association="Self.FK__PHIEUXUAT__Ma_KH__4316F928">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="PHIEUXUAT" EntitySet="PHIEUXUATs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUNHAP__Ma_NC__3D5E1FD2" Association="Self.FK__PHIEUNHAP__Ma_NC__3D5E1FD2">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAPs" />
+      <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUNHAP__Ma_NV__3E52440B" Association="Self.FK__PHIEUNHAP__Ma_NV__3E52440B">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PHIEUXUAT__Ma_NV__440B1D61" Association="Self.FK__PHIEUXUAT__Ma_NV__440B1D61">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="PHIEUXUAT" EntitySet="PHIEUXUATs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
