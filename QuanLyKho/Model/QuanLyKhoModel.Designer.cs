@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\ThaiBao\Desktop\QuanLyKho-20200403T094322Z-001\QuanLyKho\QuanLyKho\Model\QuanLyKhoModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\tung\Documents\NGOC_REACT_NATIVE\THUC_TAP_CSDL\quanlykho_vs\QuanLyKho\Model\QuanLyKhoModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
