@@ -142,7 +142,7 @@
     <Compile Include="UnitWindow.xaml.cs">
       <DependentUpon>UnitWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\ControlBarUC.xaml.cs">
+    <Compile Include="UserControlKteam\ControlBarUC.xaml.cs">
       <DependentUpon>ControlBarUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserWindow.xaml.cs">
@@ -197,7 +197,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControl\ControlBarUC.xaml">
+    <Page Include="UserControlKteam\ControlBarUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

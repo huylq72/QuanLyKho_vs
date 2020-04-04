@@ -18,16 +18,16 @@ namespace QuanLyKho.ViewModel
         public ICommand MouseMoveWindowCommand { get; set; }
         #endregion
 
-        public  ControlBarViewModel()
+        public ControlBarViewModel()
         {
-            CloseWindowCommand = new RelayCommand<UserControl>((p)=> { return p == null? false : true; }, (p)=> {
+            CloseWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) => {
                 FrameworkElement window = GetWindowParent(p);
                 var w = window as Window;
                 if (w != null)
                 {
                     w.Close();
                 }
-                }
+            }
             );
             MaximizeWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) =>
             {
@@ -56,7 +56,7 @@ namespace QuanLyKho.ViewModel
             }
             );
             MouseMoveWindowCommand = new RelayCommand<UserControl>((p) => { return p == null ? false : true; }, (p) =>
-            {                
+            {
                 FrameworkElement window = GetWindowParent(p);
                 var w = window as Window;
                 if (w != null)
@@ -73,7 +73,7 @@ namespace QuanLyKho.ViewModel
 
             while (parent.Parent != null)
             {
-                parent = parent.Parent as FrameworkElement;              
+                parent = parent.Parent as FrameworkElement;
             }
 
             return parent;
