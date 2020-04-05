@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuanLyKho.Model
 {
@@ -12,7 +8,7 @@ namespace QuanLyKho.Model
     {
         private static DataProvider instance;
 
-        public static DataProvider Instance 
+        public static DataProvider Instance
         {
             get { if (instance == null) instance = new DataProvider(); return instance; }
             private set { instance = value; }
@@ -20,23 +16,23 @@ namespace QuanLyKho.Model
         // cách gọi DataProvider.Instance. ....
         private DataProvider() { }
 
-        private string connectionSTR = "Data Source=.\\sqlexpress;Initial Catalog=QUANLYKHO;Integrated Security=True";
+        private string connectionSTR = "Data Source=DESKTOP-NKDCE2B\\THAIBAO;Initial Catalog=quanlykho;Integrated Security=True";
 
-        public DataTable ExecuteQuery(string query, object[] parameter = null) // trả về datatable
+        public DataTable ExecuteQuery(string query, object[] parameter = null)
         {
             DataTable data = new DataTable();
-
+            DataSet dts = new DataSet();
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
 
                 SqlCommand command = new SqlCommand(query, connection);
 
-                if(parameter != null)
+                if (parameter != null)
                 {
                     string[] listPara = query.Split(' ');
                     int i = 0;
-                    foreach(string item in listPara)
+                    foreach (string item in listPara)
                     {
                         if (item.Contains('@'))
                         {
@@ -44,18 +40,23 @@ namespace QuanLyKho.Model
                             i++;
                         }
                     }
-
                 }
 
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
 
-                adapter.Fill(data);
+
+
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                
+
+                    adapter.Fill(dts);
+                data = dts.Tables[0];
+
 
                 connection.Close();
             }
             return data;
         }
-
+      
         public int ExecuteNonQuery(string query, object[] parameter = null) // trả về số dòng thành công (INSERT)
         {
             int data = 0;

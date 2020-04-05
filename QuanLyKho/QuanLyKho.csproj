@@ -8,11 +8,12 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>QuanLyKho</RootNamespace>
     <AssemblyName>QuanLyKho</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -94,15 +95,11 @@
       <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DataProvider.cs" />
-    <Compile Include="Model\DONVI.cs">
-      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Model\DONVI.cs" />
     <Compile Include="Model\KHACHHANG.cs">
       <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\MATHANG.cs">
-      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Model\MATHANG.cs" />
     <Compile Include="Model\NHACUNGCAP.cs">
       <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
@@ -153,6 +150,7 @@
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\UnitViewModel.cs" />
     <Page Include="CustomerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

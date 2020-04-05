@@ -22,12 +22,12 @@ namespace QuanLyKho.ViewModel
         // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
         {
-            LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) => {
-                Isloaded = true;
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
-            }
-              );
+            //LoadedWindowCommand = new RelayCommand<object>((p) => { return true; }, (p) => {
+            //    Isloaded = true;
+            //    LoginWindow loginWindow = new LoginWindow();
+            //    loginWindow.ShowDialog();
+            //}
+              //);
             UnitCommand = new RelayCommand<object>((p) => { return true; }, (p) => { UnitWindow wd = new UnitWindow(); wd.ShowDialog(); });
             SuplierCommand = new RelayCommand<object>((p) => { return true; }, (p) => { SuplierWindow wd = new SuplierWindow(); wd.ShowDialog(); });
             CustomerCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CustomerWindow wd = new CustomerWindow(); wd.ShowDialog(); });
