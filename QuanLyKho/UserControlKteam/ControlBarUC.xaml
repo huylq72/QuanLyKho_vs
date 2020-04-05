@@ -11,21 +11,21 @@
              
              Name="ucControlBar"
              mc:Ignorable="d">
-    
-        <i:Interaction.Triggers>
+
+    <i:Interaction.Triggers>
         <i:EventTrigger EventName="MouseLeftButtonDown">
             <i:InvokeCommandAction Command="{Binding MouseMoveWindowCommand}" CommandParameter="{Binding ElementName=ucControlBar}"/>
-            </i:EventTrigger>
-        </i:Interaction.Triggers>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <materialDesign:ColorZone Mode="PrimaryLight" >
-            <DockPanel>                
+            <DockPanel>
                 <StackPanel DockPanel.Dock="Right"  Background="Transparent" Orientation="Horizontal">
                     <StackPanel.Resources>
                         <Style TargetType="Button">
                             <Setter Property="Margin" Value="2 4 2 4"></Setter>
                             <Setter Property="Width" Value="40"></Setter>
-                        </Style>                        
+                        </Style>
                     </StackPanel.Resources>
                     <Button Command="{Binding MinimizeWindowCommand}" 
                             CommandParameter="{Binding ElementName=ucControlBar}"
@@ -39,15 +39,15 @@
                     </Button>
                     <Button Command="{Binding CloseWindowCommand}" 
                             CommandParameter="{Binding ElementName=ucControlBar}"
-                            ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded" Background="OrangeRed">
+                            ToolTip="Đóng" ToolBar.OverflowMode="AsNeeded" Background="OrangeRed" Height="46" Width="108">
                         <materialDesign:PackIcon Kind="WindowClose" />
-                     </Button> 
+                    </Button>
                 </StackPanel>
-                
+
                 <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                     <ToggleButton Style="{DynamicResource MaterialDesignHamburgerToggleButton}" />
                     <TextBlock VerticalAlignment="Center" Margin="16 0 0 0" Text="{Binding Tag, ElementName=ucControlBar}"></TextBlock>
-                </StackPanel>                
+                </StackPanel>
             </DockPanel>
         </materialDesign:ColorZone>
     </Grid>

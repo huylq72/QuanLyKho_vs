@@ -45,8 +45,7 @@ namespace QuanLyKho.ViewModel
 
         public void Execute(object parameter)
         {
-            //_execute((T)parameter);
-            Console.WriteLine("oke");
+            _execute((T)parameter);
         }
 
         public event EventHandler CanExecuteChanged
