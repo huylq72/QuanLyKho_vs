@@ -14,44 +14,42 @@ namespace QuanLyKho.ViewModel
     class LoginViewModel : BaseViewModel
     {
         public bool IsLogin { get; set; }
+
         private string _UserName;
-        public string UserName { get=>_UserName; set { _UserName = value;OnPropertyChanged(); } }
+        public string UserName { get => _UserName; set { _UserName = value; OnPropertyChanged(); } }
+
         private string _Password;
         public string Password { get => _Password; set { _Password = value; OnPropertyChanged(); } }
 
-        public ICommand CloseCommand { get; set; }
         public ICommand LoginCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
+        public ICommand CloseCommand { get; set; }
         public LoginViewModel()
         {
             IsLogin = false;
-            Password = "";
-            UserName = "";
             LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Login(p); });
-            CloseCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { p.Close(); });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
+            CloseCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { p.Close(); });
         }
 
         void Login(Window p)
         {
             if (p == null)
                 return;
+            string str = "select COUNT(*) from nhanvien where Ten_DN = \'" + UserName + "\' AND MK = \'" + Password + "\'";
+            object a = DataProvider.Instance.ExecuteScalar(str);
 
-            string passEncode = MD5Hash(Base64Encode(Password));
-            // var accCount = DataProvider.Ins.DB.Users.Where(x=>x.UserName == UserName && x.Password == passEncode).Count();
-            var accCount = 1;
-            if (accCount > 0)
+            if ((int)a != 0)
             {
                 IsLogin = true;
-
                 p.Close();
             }
             else
             {
-                IsLogin = false;
-                MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
+                MessageBox.Show("Sai tài khoản hoặc mật khẩu !");
             }
         }
+
 
         public static string Base64Encode(string plainText)
         {
