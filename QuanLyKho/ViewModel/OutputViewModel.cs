@@ -10,15 +10,14 @@ using System.Windows.Input;
 
 namespace QuanLyKho.ViewModel
 {
-    public class InputViewModel : BaseViewModel
+    public class OutputViewModel : BaseViewModel
     {
-
         private ObservableCollection<MATHANG> _Object;
         public ObservableCollection<MATHANG> Object { get => _Object; set { _Object = value; OnPropertyChanged(); } }
-        private ObservableCollection<ListPhieuNhap> _List;
-        public ObservableCollection<ListPhieuNhap> List { get => _List; set { _List = value; OnPropertyChanged(); } }
-        private ObservableCollection<NHACUNGCAP> _ListNCC;
-        public ObservableCollection<NHACUNGCAP> ListNCC { get => _ListNCC; set { _ListNCC = value; OnPropertyChanged(); } }
+        private ObservableCollection<ListPhieuXuat> _List;
+        public ObservableCollection<ListPhieuXuat> List { get => _List; set { _List = value; OnPropertyChanged(); } }
+        private ObservableCollection<KHACHHANG> _ListKH;
+        public ObservableCollection<KHACHHANG> ListKH { get => _ListKH; set { _ListKH = value; OnPropertyChanged(); } }
 
         private int _Ma_MatHang;
         public int Ma_MatHang { get => _Ma_MatHang; set { _Ma_MatHang = value; OnPropertyChanged(); } }
@@ -29,10 +28,10 @@ namespace QuanLyKho.ViewModel
 
         private MATHANG _SelectedObject;
         public MATHANG SelectedObject { get => _SelectedObject; set { _SelectedObject = value; OnPropertyChanged(); } }
-        private NHACUNGCAP _SelectedNCC;
-        public NHACUNGCAP SelectedNCC { get => _SelectedNCC; set { _SelectedNCC = value; OnPropertyChanged(); } }
-        private ListPhieuNhap _SelectedItem;
-        public ListPhieuNhap SelectedItem
+        private KHACHHANG _SelectedKH;
+        public KHACHHANG SelectedKH { get => _SelectedKH; set { _SelectedKH = value; OnPropertyChanged(); } }
+        private ListPhieuXuat _SelectedItem;
+        public ListPhieuXuat SelectedItem
         {
             get => _SelectedItem;
             set
@@ -54,10 +53,11 @@ namespace QuanLyKho.ViewModel
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand AddInput { get; set; }
-        public InputViewModel() {
+        public OutputViewModel()
+        {
             _Object = new ObservableCollection<MATHANG>();
-            _List = new ObservableCollection<ListPhieuNhap>();
-            _ListNCC = new ObservableCollection<NHACUNGCAP>();
+            _List = new ObservableCollection<ListPhieuXuat>();
+            _ListKH = new ObservableCollection<KHACHHANG>();
             string query = "SELECT * from MATHANG";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             foreach (DataRow item in data.Rows)
@@ -65,13 +65,13 @@ namespace QuanLyKho.ViewModel
                 MATHANG mATHANG = new MATHANG(item);
                 _Object.Add(mATHANG);
             }
-            string query1 = "SELECT * from NHACUNGCAP";
-            DataTable data1 = DataProvider.Instance.ExecuteQuery(query1);
-            foreach (DataRow item in data1.Rows)
-            {
-                NHACUNGCAP mATHANG = new NHACUNGCAP(item);
-                _ListNCC.Add(mATHANG);
-            }
+            //string query1 = "SELECT * from KHACHHANG";
+            //DataTable data1 = DataProvider.Instance.ExecuteQuery(query1);
+            //foreach (DataRow item in data1.Rows)
+            //{
+              //  KHACHHANG khachhang = new KHACHHANG(item);
+                //_ListKH.Add(khachhang);
+           // }
             string query2 = "SELECT * from DONVI";
             DataTable data2 = DataProvider.Instance.ExecuteQuery(query2);
             foreach (DataRow item in data2.Rows)
@@ -99,21 +99,21 @@ namespace QuanLyKho.ViewModel
                 //DataTable dataLastId = DataProvider.Instance.ExecuteQuery(lastid);
                 //var dv = new DONVI((int)dataLastId.Rows[0]["Ma_Dvi"], Loai_Dvi);
                 //List.Add(dv);
-                foreach(ListPhieuNhap list in _List)
+                foreach (ListPhieuXuat list in _List)
                 {
-                    if(list.Ma_MatHang == SelectedObject.Ma_MatHang)
+                    if (list.Ma_MatHang == SelectedObject.Ma_MatHang)
                     {
                         list.So_Luong = list.So_Luong + So_Luong;
                         return;
                     }
                 }
-                ListPhieuNhap listPhieuNhap = new ListPhieuNhap(SelectedObject.Ma_MatHang, So_Luong, SelectedObject.Ten_MatHang, getTendv(List_DV,SelectedObject.Ma_MatHang), SelectedObject.Gia_Nhap, SelectedObject.Gia_Ban);
-                _List.Add(listPhieuNhap);
+                ListPhieuXuat listPhieuXuat = new ListPhieuXuat(SelectedObject.Ma_MatHang, So_Luong, SelectedObject.Ten_MatHang, getTendv(List_DV, SelectedObject.Ma_MatHang), SelectedObject.Gia_Ban);
+                _List.Add(listPhieuXuat);
 
             });
             AddInput = new RelayCommand<object>((p) =>
             {
-                if (_List.Count <= 0 || SelectedNCC == null)
+                if (_List.Count <= 0 || SelectedKH == null)
                     return false;
                 //string querySearch = "select * from DONVI where Loai_Dvi = N'" + Loai_Dvi.ToString() + "'";
                 //DataTable dataSearch = DataProvider.Instance.ExecuteQuery(querySearch);
@@ -122,7 +122,7 @@ namespace QuanLyKho.ViewModel
 
             }, (p) =>
             {
-                foreach (ListPhieuNhap list in _List)
+                foreach (ListPhieuXuat list in _List)
                 {
                     if (list.Ma_MatHang == SelectedObject.Ma_MatHang)
                     {
@@ -138,13 +138,13 @@ namespace QuanLyKho.ViewModel
 
 
         }
-        private string getTendv(ObservableCollection<DONVI> list ,int id)
+        private string getTendv(ObservableCollection<DONVI> list, int id)
         {
             foreach (DONVI temp in list)
             {
                 if (temp.Ma_Dvi == id)
                 {
-                    
+
                     return temp.Loai_Dvi;
                 }
             }
@@ -152,6 +152,6 @@ namespace QuanLyKho.ViewModel
         }
 
     }
-    
-    
+
+
 }

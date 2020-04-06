@@ -98,8 +98,9 @@
       <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ListPhieuNhap.cs" />
+    <Compile Include="Model\ListPhieuXuat.cs" />
     <Compile Include="Model\MATHANG.cs" />
-    <Compile Include="Model\NHACUNGCAPcs.cs" />
+    <Compile Include="Model\NHACUNGCAP.cs" />
     <Compile Include="Model\NHANVIEN.cs">
       <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
@@ -148,6 +149,7 @@
     <Compile Include="ViewModel\InputViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\OutputViewModel.cs" />
     <Compile Include="ViewModel\UnitViewModel.cs" />
     <Page Include="CustomerWindow.xaml">
       <SubType>Designer</SubType>

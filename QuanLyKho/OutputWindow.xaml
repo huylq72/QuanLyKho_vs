@@ -19,8 +19,9 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         x:Name="window"
-        
-        Title="Khách hàng" Height="500" Width="700">
+                DataContext="{StaticResource outputVM}"
+
+        Title="Khách hàng" Height="590.344" Width="726.066">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -35,17 +36,18 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
 
             <!--các element binding từ selected item-->
             <materialDesign:Card Grid.Row="0" Margin="5">
                 <WrapPanel Margin="0 0 0 10">
-                    <TextBox Text="{Binding ObjectDisplayName, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Mặt hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <DatePicker VerticalAlignment="Center" SelectedDate="{Binding DateOnput}" Width="100" Margin="5 5 15 -7" materialDesign:HintAssist.Hint="Ngày xuất" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                    <TextBox Text="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số lượng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Text="{Binding PriceOutput, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Giá xuất" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <ComboBox Margin="5 5 15 5" ItemsSource="{Binding Customer}" SelectedItem="{Binding SelectedCustomer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Khách hàng" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
+                    <ComboBox Margin="5 5 15 5" DisplayMemberPath="Ten_MatHang" ItemsSource="{Binding Object}" SelectedItem="{Binding SelectedObject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mặt hàng" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
+
+                    <TextBox Text="{Binding So_Luong, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số lượng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
                 </WrapPanel>
+
             </materialDesign:Card>
 
             <materialDesign:Card Grid.Row="1" Margin="5">
@@ -61,16 +63,26 @@
                     <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Mặt hàng"   DisplayMemberBinding="{Binding Object.DisplayName}"></GridViewColumn>
-                                <GridViewColumn Header="Ngày xuất" DisplayMemberBinding="{Binding Output.DateOnput}"></GridViewColumn>
-                                <GridViewColumn Header="Số lượng" DisplayMemberBinding="{Binding Count}"></GridViewColumn>
-                                <GridViewColumn Header="Giá xuất" DisplayMemberBinding="{Binding InputInfo.OutputPrice}"></GridViewColumn>
-                                <GridViewColumn Header="Khách hàng" DisplayMemberBinding="{Binding Customer.DisplayName}"></GridViewColumn>
-                                                    
+                                <GridViewColumn Header="Mã mặt hàng" Width="120"  DisplayMemberBinding="{Binding Ma_MatHang}"></GridViewColumn>
+                                <GridViewColumn Header="Mặt hàng" Width="100"  DisplayMemberBinding="{Binding Ten_MatHang}"></GridViewColumn>
+                                <GridViewColumn Header="Số lượng" Width="100" DisplayMemberBinding="{Binding So_Luong}"></GridViewColumn>
+
+                                <GridViewColumn Header="Đơn vị" Width="100"  DisplayMemberBinding="{Binding Ten_Don_vi}"></GridViewColumn>
+                                <GridViewColumn Header="Giá bán" Width="100"  DisplayMemberBinding="{Binding Gia_Ban}"></GridViewColumn>
+
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </ScrollViewer>
+            </materialDesign:Card>
+            <materialDesign:Card  Grid.Row="3" Margin="5">
+                <WrapPanel>
+                    <DatePicker VerticalAlignment="Center" SelectedDate="{Binding DateInput,  StringFormat='dd-MMM-yyyy'}" Width="100" Margin="5 5 15 -7" materialDesign:HintAssist.Hint="Ngày xuất" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                    <ComboBox Margin="5 5 15 5" DisplayMemberPath="Ten_" ItemsSource="{Binding ListKH}" SelectedItem="{Binding SelectedKH, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Khách hàng" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
+                    <Button Command="{Binding AddInput}" Content="Xuất phiếu xuất" Margin="5" Width="100"></Button>
+
+
+                </WrapPanel>
             </materialDesign:Card>
         </Grid>
     </Grid>
