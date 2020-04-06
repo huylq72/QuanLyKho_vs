@@ -19,7 +19,7 @@
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         x:Name="window"
-        
+        DataContext="{StaticResource InputVM}"
         Title="Khách hàng" Height="532.567" Width="730.651">
     <Grid>
         <Grid.RowDefinitions>
@@ -35,24 +35,25 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
 
             <!--các element binding từ selected item-->
             <materialDesign:Card Grid.Row="0" Margin="5">
                 <WrapPanel Margin="0 0 0 10">
-                    <TextBox Text="{Binding ObjectDisplayName, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Mặt hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <DatePicker VerticalAlignment="Center" SelectedDate="{Binding DateInput}" Width="100" Margin="5 5 15 -7" materialDesign:HintAssist.Hint="Ngày nhập" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-                    <TextBox Text="{Binding Count, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số lượng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Text="{Binding PriceInput, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Giá nhập" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <TextBox Text="{Binding PriceOutput, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Giá xuất" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <ComboBox Margin="5 5 15 5" DisplayMemberPath="Ten_MatHang" ItemsSource="{Binding Object}" SelectedItem="{Binding SelectedObject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Mặt hàng" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
+                    
+                    <TextBox Text="{Binding So_Luong, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Số lượng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+     
                 </WrapPanel>
+                
             </materialDesign:Card>
 
             <materialDesign:Card Grid.Row="1" Margin="5">
                 <WrapPanel>
                     <Button Command="{Binding AddCommand}" Content="Thêm" Margin="5" Width="100"></Button>
-                    <Button Command="{Binding EditCommand}" Content="Sửa" Margin="5" Width="100"></Button>
-                    <Button Command="{Binding DeleteCommand}" Content="Xóa" Margin="5" Width="100"></Button>
+                    <Button Command="{Binding EditCommand}" Content="Sửa" Margin="5" Width="100" Background="Green"></Button>
+                    <Button Command="{Binding DeleteCommand}" Content="Xóa" Margin="5" Width="100" Background="Red" Foreground="White"></Button>
                 </WrapPanel>
             </materialDesign:Card>
 
@@ -61,15 +62,24 @@
                     <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Mặt hàng" Width="100"  DisplayMemberBinding="{Binding Object.DisplayName}"></GridViewColumn>
-                                <GridViewColumn Header="Ngày nhập" Width="100"  DisplayMemberBinding="{Binding Input.DateInput}"></GridViewColumn>
-                                <GridViewColumn Header="Số lượng" Width="100" DisplayMemberBinding="{Binding Count}"></GridViewColumn>
-                                <GridViewColumn Header="Giá nhập" Width="100" DisplayMemberBinding="{Binding InputPrice}"></GridViewColumn>
-                                <GridViewColumn Header="Giá xuất" Width="100" DisplayMemberBinding="{Binding OutputPrice}"></GridViewColumn>
+                                <GridViewColumn Header="Mã mặt hàng" Width="120"  DisplayMemberBinding="{Binding Ma_MatHang}"></GridViewColumn>
+                                <GridViewColumn Header="Mặt hàng" Width="100"  DisplayMemberBinding="{Binding Ten_MatHang}"></GridViewColumn>
+                                <GridViewColumn Header="Đơn vị" Width="100"  DisplayMemberBinding="{Binding Ten_Don_vi}"></GridViewColumn>
+                                <GridViewColumn Header="Số lượng" Width="100" DisplayMemberBinding="{Binding So_Luong}"></GridViewColumn>
+                                <GridViewColumn Header="Giá nhập" Width="100"  DisplayMemberBinding="{Binding Gia_Nhap}"></GridViewColumn>
+                                <GridViewColumn Header="Giá bán" Width="100"  DisplayMemberBinding="{Binding Gia_Ban}"></GridViewColumn>
+
                             </GridView>
                         </ListView.View>
                     </ListView>
                 </ScrollViewer>
+            </materialDesign:Card>
+            <materialDesign:Card  Grid.Row="3" Margin="5">
+                <WrapPanel>
+                    <DatePicker VerticalAlignment="Center" SelectedDate="{Binding DateInput,  StringFormat='dd-MMM-yyyy'}" Width="100" Margin="5 5 15 -7" materialDesign:HintAssist.Hint="Ngày nhập" Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+                    <ComboBox Margin="5 5 15 5" DisplayMemberPath="Ten_NCC" ItemsSource="{Binding ListNCC}" SelectedItem="{Binding SelectedNCC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Nhà cung cấp" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
+                    <Button Command="{Binding AddInput}" Content="Xuất phiếu nhập" Margin="5" Width="100"></Button>
+                </WrapPanel>
             </materialDesign:Card>
         </Grid>
     </Grid>

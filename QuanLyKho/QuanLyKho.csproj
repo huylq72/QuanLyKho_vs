@@ -85,9 +85,7 @@
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\CHITIETPHIEUNHAP.cs">
-      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Model\CHITIETPHIEUNHAP.cs" />
     <Compile Include="Model\CHITIETPHIEUXUAT.cs">
       <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
@@ -99,10 +97,9 @@
     <Compile Include="Model\KHACHHANG.cs">
       <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ListPhieuNhap.cs" />
     <Compile Include="Model\MATHANG.cs" />
-    <Compile Include="Model\NHACUNGCAP.cs">
-      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Model\NHACUNGCAPcs.cs" />
     <Compile Include="Model\NHANVIEN.cs">
       <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
@@ -148,6 +145,7 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\ControlBarViewModel.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
+    <Compile Include="ViewModel\InputViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\UnitViewModel.cs" />
