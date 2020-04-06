@@ -40,7 +40,7 @@
             <!--các element binding từ selected item-->
             <materialDesign:Card Grid.Row="0" Margin="5">
                 <Grid>
-                    <TextBox Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" Margin="5" materialDesign:HintAssist.Hint="Tên đơn vị đo" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    <TextBox Text="{Binding Loai_Dvi, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="5" materialDesign:HintAssist.Hint="Tên đơn vị đo" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </Grid>
             </materialDesign:Card>
 
@@ -48,7 +48,6 @@
                 <WrapPanel>
                     <Button Command="{Binding AddCommand}" Content="Thêm" Margin="5" Width="100"></Button>
                     <Button Command="{Binding EditCommand}" Content="Sửa" Margin="5" Width="100"></Button>
-                    <Button Command="{Binding DeleteCommand}" Content="Xóa" Margin="5" Width="100"></Button>
                 </WrapPanel>
             </materialDesign:Card>
 

@@ -48,7 +48,7 @@ namespace QuanLyKho.Model
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 
 
-                    adapter.Fill(dts);
+                   adapter.Fill(dts);
                 data = dts.Tables[0];
 
 

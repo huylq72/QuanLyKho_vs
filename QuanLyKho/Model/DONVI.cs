@@ -9,16 +9,18 @@
 
 namespace QuanLyKho.Model
 {
+    using QuanLyKho.ViewModel;
     using System;
     using System.Collections.Generic;
     using System.Data;
 
-    public partial class DONVI
+    public partial class DONVI  : BaseViewModel
     {
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DONVI(string Loai_Dvi)
+        public DONVI(int Ma_Dvi, string Loai_Dvi)
         {
+            this.Ma_Dvi = Ma_Dvi;
             this.Loai_Dvi = Loai_Dvi;
         }
 
@@ -29,7 +31,8 @@ namespace QuanLyKho.Model
         }
 
         public int Ma_Dvi { get; set; }
-        public string Loai_Dvi { get; set; }
+        private string _Loai_Dvi { get; set; }
+        public string Loai_Dvi { get => _Loai_Dvi; set { _Loai_Dvi = value;OnPropertyChanged(); } }
 
         //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         //public virtual ICollection<MATHANG> MATHANGs { get; set; }
