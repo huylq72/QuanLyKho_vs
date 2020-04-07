@@ -246,6 +246,7 @@
     <Compile Include="ViewModel\InputViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ObjectViewModel.cs" />
     <Compile Include="ViewModel\UnitViewModel.cs" />
     <Compile Include="Winform\Report.cs">
       <SubType>Form</SubType>
