@@ -1,4 +1,6 @@
-﻿using QuanLyKho.Model;
+﻿using Microsoft.Reporting.WinForms;
+using QuanLyKho.Model;
+using QuanLyKho.Winform;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +8,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace QuanLyKho.ViewModel
@@ -40,12 +44,14 @@ namespace QuanLyKho.ViewModel
                 OnPropertyChanged();
                 if (SelectedItem != null)
                 {
-                    MATHANG mh = new MATHANG(SelectedItem);
+                    MATHANG mh = new MATHANG(SelectedItem, getMadv(List_DV,SelectedItem.Ten_Don_vi));
                     SelectedObject = mh;
                     So_Luong = SelectedItem.So_Luong;
                 }
             }
         }
+        private DateTime _DateInput = DateTime.Now;
+        public DateTime DateInput { get => _DateInput; set { _DateInput = value; OnPropertyChanged(); } }
         private ObservableCollection<DONVI> _List_DV = new ObservableCollection<DONVI>();
         public ObservableCollection<DONVI> List_DV { get => _List_DV; set { _List_DV = value; OnPropertyChanged(); } }
 
@@ -85,19 +91,11 @@ namespace QuanLyKho.ViewModel
             {
                 if (So_Luong <= 0)
                     return false;
-                //string querySearch = "select * from DONVI where Loai_Dvi = N'" + Loai_Dvi.ToString() + "'";
-                //DataTable dataSearch = DataProvider.Instance.ExecuteQuery(querySearch);
-                //if (dataSearch.Rows.Count > 0) return false;
                 return true;
 
             }, (p) =>
             {
-                //string queryIs = "insert into donvi(Loai_Dvi) values(N'" + Loai_Dvi.ToString() + "')";
-                //DataProvider.Instance.ExecuteNonQuery(queryIs);
-                //string lastid = "select top 1 * from DONVI ORDER BY Ma_Dvi DESC";
-                //DataTable dataLastId = DataProvider.Instance.ExecuteQuery(lastid);
-                //var dv = new DONVI((int)dataLastId.Rows[0]["Ma_Dvi"], Loai_Dvi);
-                //List.Add(dv);
+
                 foreach(ListPhieuNhap list in _List)
                 {
                     if(list.Ma_MatHang == SelectedObject.Ma_MatHang)
@@ -114,21 +112,50 @@ namespace QuanLyKho.ViewModel
             {
                 if (_List.Count <= 0 || SelectedNCC == null)
                     return false;
-                //string querySearch = "select * from DONVI where Loai_Dvi = N'" + Loai_Dvi.ToString() + "'";
-                //DataTable dataSearch = DataProvider.Instance.ExecuteQuery(querySearch);
-                //if (dataSearch.Rows.Count > 0) return false;
                 return true;
 
             }, (p) =>
             {
-                foreach (ListPhieuNhap list in _List)
+                //DialogResult result = System.Windows.MessageBox.Show("Bạn có muốn nhập hàng vào kho?", "Phần mềm quản lý kho", MessageBoxButton.YesNoCancel);
+                if (System.Windows.Forms.MessageBox.Show("Bạn có muốn nhập hàng vào kho?", "Phần mềm quản lý kho", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    if (list.Ma_MatHang == SelectedObject.Ma_MatHang)
+                    string insert = "INSERT INTO Dbo.PHIEUNHAP (Ma_NCC,Ma_NV,Thoi_Gian) values";
+                    string data123 = "(" + SelectedNCC.Ma_NCC + ",2,'" + DateInput.ToString() + "')";
+                    DataProvider.Instance.ExecuteNonQuery(insert + data123);
+                    DataTable topId = DataProvider.Instance.ExecuteQuery("select top 1 * from PHIEUNHAP ORDER BY Ma_PhieuNhap DESC");
+                    string inCTPN = "INSERT INTO CHITIETPHIEUNHAP VALUES";
+                    List<string> words = new List<string>();
+                    foreach (ListPhieuNhap list in _List)
                     {
-                        list.So_Luong = list.So_Luong + So_Luong;
-                        return;
+                        words.Add("("+ (int)topId.Rows[0]["Ma_PhieuNhap"] +","+list.Ma_MatHang+","+list.So_Luong+")");
+ 
                     }
+                    DataProvider.Instance.ExecuteNonQuery(inCTPN + string.Join(",", words.ToArray()));
+                    RP report = new RP((int)topId.Rows[0]["Ma_PhieuNhap"]);
+                    
+
                 }
+                else
+                {
+                    return;
+                }
+                   
+                
+               
+
+
+
+            });
+            DeleteCommand = new RelayCommand<object>((p) =>
+            {
+                if (_List.Count <= 0 || SelectedItem == null)
+                    return false;
+                return true;
+
+            }, (p) =>
+            {
+                RemoveItem(_List, SelectedItem);
+
                 //ListPhieuNhap listPhieuNhap = new ListPhieuNhap(SelectedObject.Ma_MatHang, So_Luong, SelectedObject.Ten_MatHang);
                 //_List.Add(listPhieuNhap);
 
@@ -149,6 +176,23 @@ namespace QuanLyKho.ViewModel
             }
             return null;
         }
+        private int getMadv(ObservableCollection<DONVI> list, string id)
+        {
+            foreach (DONVI temp in list)
+            {
+                if (temp.Loai_Dvi == id)
+                {
+
+                    return temp.Ma_Dvi;
+                }
+            }
+            return 0;
+        }
+        public void RemoveItem(ObservableCollection<ListPhieuNhap> collection, ListPhieuNhap instance)
+        {
+            collection.Remove(collection.Where(i => i.Ma_MatHang == instance.Ma_MatHang).Single());
+        }
+
 
     }
     

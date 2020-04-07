@@ -22,31 +22,31 @@ namespace QuanLyKho.ViewModel
         // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
         {
-            LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
-            {
-                Isloaded = true;
-                if (p == null)
-                    return;
-                p.Hide();
+            //LoadedWindowCommand = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            //{
+            //    Isloaded = true;
+            //    if (p == null)
+            //        return;
+            //    p.Hide();
 
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.ShowDialog();
+            //    LoginWindow loginWindow = new LoginWindow();
+            //    loginWindow.ShowDialog();
 
-                if (loginWindow.DataContext == null)
-                    return;
+            //    if (loginWindow.DataContext == null)
+            //        return;
 
-                var loginVM = loginWindow.DataContext as LoginViewModel;
+            //    var loginVM = loginWindow.DataContext as LoginViewModel;
 
-                if (loginVM.IsLogin)
-                {
-                    p.Show();
-                }
-                else
-                {
-                    p.Close();
-                }
-            }
-              );
+            //    if (loginVM.IsLogin)
+            //    {
+            //        p.Show();
+            //    }
+            //    else
+            //    {
+            //        p.Close();
+            //    }
+            //}
+            //  );
             UnitCommand = new RelayCommand<object>((p) => { return true; }, (p) => { UnitWindow wd = new UnitWindow(); wd.ShowDialog(); });
             SuplierCommand = new RelayCommand<object>((p) => { return true; }, (p) => { SuplierWindow wd = new SuplierWindow(); wd.ShowDialog(); });
             CustomerCommand = new RelayCommand<object>((p) => { return true; }, (p) => { CustomerWindow wd = new CustomerWindow(); wd.ShowDialog(); });

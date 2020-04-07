@@ -1,0 +1,8 @@
+<FileList>
+<File Reference="Syncfusion.Edit.WPF.dll">
+	<ContainsControls>True</ContainsControls>
+	<ToolboxItems VSCategory="Syncfusion Controls for WPF" BlendCategory="Syncfusion Controls for WPF">
+		<Item Type="Syncfusion.Windows.Edit.EditControl"/>
+	</ToolboxItems>
+</File>
+</FileList>

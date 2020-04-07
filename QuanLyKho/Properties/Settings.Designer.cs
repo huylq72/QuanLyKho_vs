@@ -22,5 +22,16 @@ namespace QuanLyKho.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-NKDCE2B\\THAIBAO;Initial Catalog=quanlykho;Persist Security In" +
+            "fo=True;User ID=root;Password=1234")]
+        public string quanlykhoConnectionString {
+            get {
+                return ((string)(this["quanlykhoConnectionString"]));
+            }
+        }
     }
 }

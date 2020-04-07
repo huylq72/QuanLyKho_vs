@@ -32,7 +32,17 @@ namespace QuanLyKho.Model
             this.Gia_Nhap = ls.Gia_Nhap;
             this.Gia_Ban = ls.Gia_Ban;
 
-        } 
+        }
+        public MATHANG(ListPhieuNhap ls, int donvi)
+        {
+            this.Ten_MatHang = ls.Ten_MatHang;
+            this.Ma_MatHang = ls.Ma_MatHang;
+            this.Gia_Nhap = ls.Gia_Nhap;
+            this.Gia_Ban = ls.Gia_Ban;
+            this.Ma_Dvi = donvi;
+
+        }
+
         public MATHANG(DataRow row)
         {
             this.Ma_MatHang = (int)row["Ma_MatHang"];
