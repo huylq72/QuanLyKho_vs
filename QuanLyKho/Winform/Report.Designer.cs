@@ -39,6 +39,7 @@
             this.reportViewer2.ServerReport.BearerToken = null;
             this.reportViewer2.Size = new System.Drawing.Size(800, 450);
             this.reportViewer2.TabIndex = 0;
+            this.reportViewer2.Load += new System.EventHandler(this.reportViewer2_Load);
             // 
             // Report
             // 

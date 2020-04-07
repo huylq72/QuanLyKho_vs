@@ -6,4 +6,6 @@
     <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
     <viewmodel:UnitViewModel x:Key="UnitVM"></viewmodel:UnitViewModel>
     <viewmodel:InputViewModel x:Key="InputVM"></viewmodel:InputViewModel>
+    <viewmodel:OutputViewModel x:Key="outputVM"></viewmodel:OutputViewModel>
+
 </ResourceDictionary>

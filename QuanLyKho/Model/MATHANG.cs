@@ -16,6 +16,8 @@ namespace QuanLyKho.Model
 
     public partial class MATHANG : BaseViewModel
     {
+        private ListPhieuXuat selectedItem;
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MATHANG(int Mamh, string Tenmh, int Madv, double Gia_Nhap, double Gia_Ban)
         {
@@ -51,6 +53,12 @@ namespace QuanLyKho.Model
             this.Gia_Nhap = (double)row["Gia_Nhap"];
             this.Gia_Ban = (double)row["Gia_Ban"];
         }
+
+        public MATHANG(ListPhieuXuat selectedItem)
+        {
+            this.selectedItem = selectedItem;
+        }
+
         public int Ma_MatHang { get; set; }
 
         private int _Ma_Dvi { get; set; }

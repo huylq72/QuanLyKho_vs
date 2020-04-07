@@ -430,3 +430,4 @@ E:\workspace\quanlykho_vs\QuanLyKho\bin\Debug\pt\Microsoft.ReportViewer.WinForms
 E:\workspace\quanlykho_vs\QuanLyKho\bin\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
 E:\workspace\quanlykho_vs\QuanLyKho\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 E:\workspace\quanlykho_vs\QuanLyKho\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+E:\workspace\quanlykho_vs\QuanLyKho\bin\Debug\CrystalDecisions.CrystalReports.Engine.dll

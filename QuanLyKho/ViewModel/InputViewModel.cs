@@ -16,13 +16,14 @@ namespace QuanLyKho.ViewModel
 {
     public class InputViewModel : BaseViewModel
     {
+
         private ObservableCollection<MATHANG> _Object;
         public ObservableCollection<MATHANG> Object { get => _Object; set { _Object = value; OnPropertyChanged(); } }
         private ObservableCollection<ListPhieuNhap> _List;
         public ObservableCollection<ListPhieuNhap> List { get => _List; set { _List = value; OnPropertyChanged(); } }
         private ObservableCollection<NHACUNGCAP> _ListNCC;
         public ObservableCollection<NHACUNGCAP> ListNCC { get => _ListNCC; set { _ListNCC = value; OnPropertyChanged(); } }
-        
+
         private int _Ma_MatHang;
         public int Ma_MatHang { get => _Ma_MatHang; set { _Ma_MatHang = value; OnPropertyChanged(); } }
         private string _Ten_MatHang;
@@ -131,7 +132,7 @@ namespace QuanLyKho.ViewModel
  
                     }
                     DataProvider.Instance.ExecuteNonQuery(inCTPN + string.Join(",", words.ToArray()));
-                    RP report = new RP((int)topId.Rows[0]["Ma_PhieuNhap"]);
+                    RP report = new RP((int)topId.Rows[0]["Ma_PhieuNhap"], SelectedNCC.Ten_NCC,DateInput);
                     
 
                 }
