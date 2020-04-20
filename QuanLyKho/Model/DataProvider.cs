@@ -16,7 +16,7 @@ namespace QuanLyKho.Model
         // cách gọi DataProvider.Instance. ....
         private DataProvider() { }
 
-        private string connectionSTR = "Data Source=DESKTOP-NKDCE2B\\THAIBAO;Initial Catalog=quanlykho;Integrated Security=True";
+        private string connectionSTR = "data source=desktop-tdmbjtk\\sqlexpress;initial catalog=QUANLYKHO;integrated security=true";
         //private string connectionSTR = "data source=desktop-tdmbjtk\\sqlexpress;initial catalog=QUANLYKHO;integrated security=true";
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {

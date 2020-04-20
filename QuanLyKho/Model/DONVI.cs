@@ -18,6 +18,10 @@ namespace QuanLyKho.Model
     {
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DONVI()
+        {
+
+        }
         public DONVI(int Ma_Dvi, string Loai_Dvi)
         {
             this.Ma_Dvi = Ma_Dvi;

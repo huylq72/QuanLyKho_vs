@@ -20,7 +20,7 @@
         WindowStartupLocation="CenterScreen"
         x:Name="window"
          DataContext="{StaticResource ObjectVM}"
-        Title="Khách hàng" Height="500" Width="700">
+        Title="Danh sách mặt hàng" Height="500" Width="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -41,7 +41,7 @@
             <materialDesign:Card Grid.Row="0" Margin="5">
                 <WrapPanel Margin="0 0 0 10">
                     <TextBox Text="{Binding Ten_MatHang, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Tên mặt hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    <ComboBox Margin="5 5 15 5" DisplayMemberPath="DisplayName" ItemsSource="{Binding Unit}" SelectedItem="{Binding SelectedUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Đơn vị " IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
+                    <ComboBox Margin="5 5 15 5" DisplayMemberPath="Loai_Dvi" ItemsSource="{Binding ListDonVi}" SelectedIndex="{Binding DonViIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Đơn vị " IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}"></ComboBox>
                     <TextBox Text="{Binding Gia_Nhap, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Giá nhập" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     <TextBox Text="{Binding Gia_Ban, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 15 5" materialDesign:HintAssist.Hint="Giá xuất" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                 </WrapPanel>
@@ -56,16 +56,14 @@
 
             <materialDesign:Card Grid.Row="2" Margin="5" VerticalAlignment="Stretch">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                    <ListView ItemsSource="{Binding ListMatHang}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Id" Width="70" DisplayMemberBinding="{Binding Ma_MatHang}"></GridViewColumn>
-                                <GridViewColumn Header="Tên mặt hàng" Width="160"  DisplayMemberBinding="{Binding Ten_MatHang}"></GridViewColumn>
-                                <GridViewColumn Header="Đơn vị "  Width="100"  DisplayMemberBinding="{Binding Unit.Ma_DVi}"></GridViewColumn>
+                                <GridViewColumn Header="Tên mặt hàng" Width="220"  DisplayMemberBinding="{Binding Ten_MatHang}"></GridViewColumn>
+                                <GridViewColumn Header="Đơn vị "  Width="100"  DisplayMemberBinding="{Binding Loai_Dvi}"></GridViewColumn>
                                 <GridViewColumn Header="Giá nhập" Width="120"  DisplayMemberBinding="{Binding Gia_Nhap}"></GridViewColumn>
                                 <GridViewColumn Header="Giá bán" Width="120"  DisplayMemberBinding="{Binding Gia_Ban}"></GridViewColumn>
-
-
                             </GridView>
                         </ListView.View>
                     </ListView>

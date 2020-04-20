@@ -27,6 +27,26 @@ namespace QuanLyKho.Model
             this.Gia_Nhap = Gia_Nhap;
             this.Gia_Ban = Gia_Ban;
         }
+
+        public MATHANG(int Mamh, string Tenmh, string loaidv, DONVI donVi, double Gia_Nhap, double Gia_Ban)
+        {
+            this.Ma_MatHang = Mamh;
+            this.Ten_MatHang = Tenmh;
+            this.Loai_Dvi = loaidv;
+            DONVI = donVi;
+            this.Gia_Nhap = Gia_Nhap;
+            this.Gia_Ban = Gia_Ban;
+        }
+
+
+        public MATHANG(int Mamh, string Tenmh, string loaidv, double Gia_Nhap, double Gia_Ban)
+        {
+            this.Ma_MatHang = Mamh;
+            this.Ten_MatHang = Tenmh;
+            this.Loai_Dvi = loaidv;
+            this.Gia_Nhap = Gia_Nhap;
+            this.Gia_Ban = Gia_Ban;
+        }
         public MATHANG(ListPhieuNhap ls)
         {
             this.Ten_MatHang = ls.Ten_MatHang;
@@ -65,6 +85,9 @@ namespace QuanLyKho.Model
         public int Ma_Dvi { get => _Ma_Dvi; set { _Ma_Dvi = value; OnPropertyChanged(); } }
         private string _Ten_MatHang { get; set; }
         public string Ten_MatHang { get => _Ten_MatHang; set { _Ten_MatHang = value; OnPropertyChanged(); } }
+
+        private string _Loai_Dvi { get; set; }
+        public string Loai_Dvi { get => _Loai_Dvi; set { _Loai_Dvi = value; OnPropertyChanged(); } }
         private double _Gia_Nhap { get; set; }
         public double Gia_Nhap { get => _Gia_Nhap; set { _Gia_Nhap = value; OnPropertyChanged(); } }
 

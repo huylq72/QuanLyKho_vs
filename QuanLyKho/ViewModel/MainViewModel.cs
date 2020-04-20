@@ -19,6 +19,7 @@ namespace QuanLyKho.ViewModel
         public ICommand UserCommand { get; set; }
         public ICommand InputCommand { get; set; }
         public ICommand OutputCommand { get; set; }
+        public ICommand ReportCommand { get; set; }
         // mọi thứ xử lý sẽ nằm trong này
         public MainViewModel()
         {
@@ -54,6 +55,7 @@ namespace QuanLyKho.ViewModel
             UserCommand = new RelayCommand<object>((p) => { return true; }, (p) => { UserWindow wd = new UserWindow(); wd.ShowDialog(); });
             InputCommand = new RelayCommand<object>((p) => { return true; }, (p) => { InputWindow wd = new InputWindow(); wd.ShowDialog(); });
             OutputCommand = new RelayCommand<object>((p) => { return true; }, (p) => { OutputWindow wd = new OutputWindow(); wd.ShowDialog(); });
+            ReportCommand = new RelayCommand<object>((p) => { return true; }, (p) => { ReportWindow wd = new ReportWindow(); wd.ShowDialog(); });
         }
     }
 }
