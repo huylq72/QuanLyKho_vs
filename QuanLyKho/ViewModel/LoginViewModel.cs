@@ -18,6 +18,9 @@ namespace QuanLyKho.ViewModel
         private string _UserName;
         public string UserName { get => _UserName; set { _UserName = value; OnPropertyChanged(); } }
 
+        public static string User;
+        public static string Pass;
+
         private string _Password;
         public string Password { get => _Password; set { _Password = value; OnPropertyChanged(); } }
 
@@ -30,6 +33,7 @@ namespace QuanLyKho.ViewModel
             LoginCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { Login(p); });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { return true; }, (p) => { Password = p.Password; });
             CloseCommand = new RelayCommand<Window>((p) => { return true; }, (p) => { p.Close(); });
+            
         }
 
         void Login(Window p)
@@ -42,6 +46,7 @@ namespace QuanLyKho.ViewModel
             if ((int)a != 0)
             {
                 IsLogin = true;
+                User = UserName; Pass = Password;
                 p.Close();
             }
             else
@@ -50,15 +55,12 @@ namespace QuanLyKho.ViewModel
             }
         }
 
-
         public static string Base64Encode(string plainText)
         {
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
             return System.Convert.ToBase64String(plainTextBytes);
         }
-
-
-
+        
         public static string MD5Hash(string input)
         {
             StringBuilder hash = new StringBuilder();

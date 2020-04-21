@@ -17,7 +17,7 @@ namespace QuanLyKho.Model
         private DataProvider() { }
 
         //private string connectionSTR = "Data Source=DESKTOP-NKDCE2B\\THAIBAO;Initial Catalog=quanlykho;Integrated Security=True";
-        private string connectionSTR = "Data Source=.\\sqlexpress;Initial Catalog=QUANLYKHO;Integrated Security=True";
+        private string connectionSTR = "Data Source=.\\sqlexpress;Initial Catalog=QUANLYKHO1;Integrated Security=True";
         public DataTable ExecuteQuery(string query, object[] parameter = null)
         {
             DataTable data = new DataTable();
@@ -25,9 +25,7 @@ namespace QuanLyKho.Model
             using (SqlConnection connection = new SqlConnection(connectionSTR))
             {
                 connection.Open();
-
                 SqlCommand command = new SqlCommand(query, connection);
-
                 if (parameter != null)
                 {
                     string[] listPara = query.Split(' ');
@@ -41,13 +39,8 @@ namespace QuanLyKho.Model
                         }
                     }
                 }
-
-
-
-
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
-                
-
+              
                    adapter.Fill(dts);
                 data = dts.Tables[0];
 
@@ -79,11 +72,8 @@ namespace QuanLyKho.Model
                             i++;
                         }
                     }
-
                 }
-
                 data = command.ExecuteNonQuery();
-
                 connection.Close();
             }
             return data;

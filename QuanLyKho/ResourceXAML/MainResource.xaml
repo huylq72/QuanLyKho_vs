@@ -7,5 +7,5 @@
     <viewmodel:UnitViewModel x:Key="UnitVM"></viewmodel:UnitViewModel>
     <viewmodel:InputViewModel x:Key="InputVM"></viewmodel:InputViewModel>
     <viewmodel:OutputViewModel x:Key="outputVM"></viewmodel:OutputViewModel>
-
+    <viewmodel:UserViewModel x:Key="UserVM"></viewmodel:UserViewModel>
 </ResourceDictionary>

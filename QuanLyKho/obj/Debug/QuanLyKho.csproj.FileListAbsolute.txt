@@ -326,3 +326,8 @@ C:\Users\pc\Desktop\TTCSDL\New folder\New folder\quanlykho_vs\QuanLyKho\obj\Debu
 C:\Users\pc\Desktop\TTCSDL\New folder\New folder\quanlykho_vs\QuanLyKho\obj\Debug\QuanLyKho.csproj.CopyComplete
 C:\Users\pc\Desktop\TTCSDL\New folder\New folder\quanlykho_vs\QuanLyKho\obj\Debug\QuanLyKho.exe
 C:\Users\pc\Desktop\TTCSDL\New folder\New folder\quanlykho_vs\QuanLyKho\obj\Debug\QuanLyKho.pdb
+C:\Users\pc\Desktop\TTCSDL\New folder\New folder\quanlykho_vs\QuanLyKho\obj\Debug\AddUserWindow.g.cs
+C:\Users\pc\Desktop\TTCSDL\New folder\New folder\quanlykho_vs\QuanLyKho\obj\Debug\ChangePasswordWindow.g.cs
+C:\Users\pc\Desktop\TTCSDL\New folder\New folder\quanlykho_vs\QuanLyKho\obj\Debug\AddUserWindow.baml
+C:\Users\pc\Desktop\TTCSDL\New folder\New folder\quanlykho_vs\QuanLyKho\obj\Debug\ChangePasswordWindow.baml
+C:\Users\pc\Desktop\TTCSDL\New folder\New folder\quanlykho_vs\QuanLyKho\obj\Debug\QuanLyKho.FormReport.resources
